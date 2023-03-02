@@ -2,13 +2,13 @@
 * {
     box-sizing: border-box;
 }
-h1, h3 {
+h1, h2, h3 {
     text-align: center;
 }
 
 .header {
     overflow: hidden;
-    background-color: #f1f1f1;
+    background-color: #bababa;
     padding: 20px 10px;
 }
 .header a {
@@ -36,20 +36,61 @@ h1, h3 {
     float: right;
 }
 
+.search {
+    display: inline-block;
+    padding: 10px;
+    vertical-align: top;
+}
+#searchBar {
+    border: 2px solid grey;
+    background: #ffffff;
+    padding: 12px;
+    border-radius: 5px;
+    width: 250px;
+}
+.searchButton {
+    border: 2px solid grey;
+    background: #ffffff;
+    padding: 12px;
+    border-radius: 5px;
+}
+.searchButton:hover {
+    cursor: pointer;
+    border:2px solid black;
+}
+
+.categories, .newest{
+    margin: 15px auto;
+    width: fit-content;
+}
+.categories:hover, .newest:hover{
+    cursor: pointer;
+    text-decoration-line: underline;    
+}
+
+
 .flexbox {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 60%;
+    margin: auto;
+    gap: 10px;
+}
+.flexbox > div:hover {
+    border: 2px solid black;
+    cursor: pointer;
 }
 .flexbox > div {
+    border: 2px solid white;
     background-color: #f1f1f1;
-    margin: 10px;
     padding: 20px;
     font-size: 15px;
     text-align: center;
     border-radius: 5px;
+    
 }
-.flexbox > div > img {
+.flexbox > div > img, .flexbox > div > div {
     max-width: 200px;
     max-height: 200px;
     height: 120px;

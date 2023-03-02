@@ -3,21 +3,49 @@
     <head>
         <title>Integrated Project</title>
         <link rel="stylesheet" href="homepage.css">
+        <script src="https://kit.fontawesome.com/94fbf91a2b.js" crossorigin="anonymous"></script>
         <script src="homepage.js"></script>
         <meta name="viewport" content="width=1280, initial-scale=1">
     </head>
     <body>
         <div class="header">
             <img src="../images/Wumpus.png" class="logo">
+            <div class="search">
+                <label for="searchBar"></label>
+                <input id="searchBar" type="text" placeholder="Search">
+                <button class="searchButton"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
             <div class="header-right">
                 <a class="active" href="homepage.html">Home</a>
                 <a href="../signup/signup.html">Sign Up</a>
                 <a href="../login/login.html">Log In</a>
             </div> 
         </div>
-        <h1>Integrated Project</h1>
-        <h3>This is our Project</h3>
+        <h1 style="font-size: 40pt;">B.U.M</h1>
+        <h2>Brighton University Marketplace</h2>
+        <h3>We can satisfy all your wants and needs. Hopefully</h3>
 
+        <h2 class="newest">Newest Items</h2>
+        <div class="flexbox">
+            <div>
+                <div style="background-color: red;"></div>
+                <h4>Item 1</h4>
+            </div>
+            <div>
+                <div style="background-color: blue;"></div>
+                <h4>Item 2</h4>
+            </div>
+            <div>
+                <div style="background-color: green;"></div>
+                <h4>Item 3</h4>
+            </div>
+            <div>
+                <div style="background-color: yellow;"></div>
+                <h4>Item 4</h4>
+            </div>
+        </div>
+
+        <h2 class="categories">Categories</h2>
         <div class="flexbox">
             <div>
                 <img src="../images/electronics.jpg">
