@@ -3,7 +3,7 @@
 }
 .header {
     overflow: hidden;
-    background-color: #f1f1f1;
+    background-color: #bababa;
     padding: 20px 10px;
 }
 .header a {
@@ -35,9 +35,15 @@
     text-align: center;
     margin: 20px auto;
     padding: 10px;
-    background-color: #f1f1f1;
-
+    background-color: #c6c6c6;
 }
 .loginForm > input{
     margin: 10px 5px;
+}
+input {
+    border: 1px solid grey;
+    background: #ffffff;
+    padding: 12px;
+    border-radius: 5px;
+    width: 250px;
 }
