@@ -26,7 +26,13 @@ h1, h2, h3 {
     color: black;
 }
 .logo {
-    max-width: 50px;
+    max-height: 60px;
+}
+.divider {
+    width: 2000px;
+    height: 10px;
+    background-color: #323e48;
+    color: #da3949;
 }
 .header a.active {
     background-color: dodgerblue;
