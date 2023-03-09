@@ -21,7 +21,7 @@
     color: black;
 }
 .logo {
-    max-width: 50px;
+    max-height: 60px;
 }
 .header a.active {
     background-color: dodgerblue;
@@ -46,4 +46,7 @@ input {
     padding: 12px;
     border-radius: 5px;
     width: 250px;
+}
+.logo {
+    max-height: 60px;
 }

@@ -21,7 +21,7 @@
     color: black;
 }
 .logo {
-    max-width: 50px;
+    max-height: 60px;
 }
 .header a.active {
     background-color: dodgerblue;
