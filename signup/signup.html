@@ -3,7 +3,7 @@
     <head>
         <title>Sign Up</title>
         <link rel="stylesheet" href="signup.css">
-        <script src="signup.js"></script>
+        <script src="signup.js" type="module" defer></script>
         <meta name="viewport" content="width=1280, initial-scale=1">
     </head>
     <body>
@@ -30,28 +30,29 @@
                         <div class="container">
                             
                             <label for="email"><b>Email</b></label>
-                            <input type="text" placeholder="Enter Email" name="email"
+                            <input class="email" type="text" placeholder="Enter Email" name="email"
                             required>
             
                             <label for="username"><b>Username</b></label>
-                            <input type="text" placeholder="Username" name="username"
+                            <input class="username" type="text" placeholder="Username" name="username"
                             required>
             
                             <label for="psword"><b>Password</b></label>
-                            <input type="password" placeholder="Enter Password" name="psword"
+                            <input class="psword" type="password" placeholder="Enter Password" name="psword"
                             required>
             
-                            <label for="pasword-repeat"><b>Re-enter Password</b></label>
-                            <input type="password" placeholder="Re-enter Password" name="pasword-repeat"
+                            <label for="psword-repeat"><b>Re-enter Password</b></label>
+                            <input class="psword-repeat" type="password" placeholder="Re-enter Password" name="psword-repeat"
                             required>
             
-                            <label>
+                            <!-- <label>
                                 <input type="checkbox" checked="checked" name="remember" style="margin-bottom:10px;"> Remember me
-                            </label>
+                            </label> -->
             
                             <p> By creating this account you agree to our T&C and Privacy Policy</p>
+                            <p class="errMes"></p>
             
-                            <button type="button" class="btn">Sign Up</button>
+                            <button type="button" id="btn">Sign Up</button>
                         </div>
                     </form>
                 </div>

@@ -30,7 +30,7 @@ nav ul li{
   max-width: 500px;
   margin: auto;
 }
-.btn{
+#btn{
   background-color: #ff523b;
   color: white;
   padding: 8px 30px;
@@ -39,7 +39,7 @@ nav ul li{
   transition: background 0.5s;
   width: 100%;
 }
-.btn:hover{
+#btn:hover{
   cursor: pointer;
   background-color: #563434;
 }
@@ -62,6 +62,11 @@ a{
 }
 p{
   color:#323e48;
+}
+
+.errMes{
+  display: none;
+  color: red;
 }
 
 .flexrow{
