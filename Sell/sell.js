@@ -26,6 +26,9 @@ const price = document.querySelector('.price');
 const btn = document.querySelector('#btn');
 btn.addEventListener("click", (event) => upload(event))
 
+const logoutBtn = document.querySelector(".logout");
+logoutBtn.addEventListener("click", () => logout());
+
 window.addEventListener("load", function() {   
     auth.onAuthStateChanged(function(user) {
         if (user) {
@@ -80,4 +83,13 @@ async function upload(e) {
       
     }
   })  
+}
+function logout() {
+  signOut(auth).then(() => {
+      // Sign-out successful.
+      window.location.href = "../homepage/homepage.html";
+    }).catch((error) => {
+      // An error happened.
+      console.log(error);
+    });
 }

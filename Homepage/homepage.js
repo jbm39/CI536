@@ -155,7 +155,7 @@ async function getProducts() {
 function logout() {
     signOut(auth).then(() => {
         // Sign-out successful.
-
+        location.reload()
       }).catch((error) => {
         // An error happened.
         console.log(error);
