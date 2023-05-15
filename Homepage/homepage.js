@@ -25,8 +25,10 @@ const storage = getStorage();
 window.addEventListener("load", function() {    
     const explore = document.querySelector("#exploreBtn");
     explore.addEventListener("click", () => navigateToProducts());
-    const prodsNav = document.querySelector(".productsNav a");
-    prodsNav.addEventListener("click", () => navigateToProducts());
+
+    const catBtn = document.querySelector("#catBtn");
+    catBtn.addEventListener("click", () => { window.location.href = "../products/products.html"});
+
     try {
         // Check if user is logged in
         auth.onAuthStateChanged(function(user) {
@@ -79,6 +81,11 @@ window.addEventListener("load", function() {
 
     // Start displaying products
     getProducts();
+
+    const catTiles = document.querySelectorAll(".col-4");
+    for (let i = 0; i < catTiles.length; i++) {
+        catTiles[i].addEventListener("click", () => categoriesNav(catTiles[i].children));
+    }
     
 })
 
@@ -170,7 +177,6 @@ function navigateToProducts() {
     prods.scrollIntoView();
 }
 async function buyItem(id) {
-    console.log(id)
     const docRef = doc(db, "products", id)
     const snap = await getDoc(docRef)
     if (snap.exists()) {
@@ -186,4 +192,10 @@ async function buyItem(id) {
         location.reload();
     }
     //
+}
+
+function categoriesNav(tile) {
+    console.log(tile);
+    console.log(tile[1].innerHTML);
+    window.location.href = "../products/products.html?" + tile[1].innerHTML.toLowerCase();
 }
