@@ -22,6 +22,7 @@ const email = document.querySelector(".email");
 const username = document.querySelector(".username");
 const password = document.querySelector(".psword");
 const passwordRepeat = document.querySelector(".psword-repeat");
+const checkbox = document.querySelector('.agree');
 
 window.addEventListener("load", function() {
     
@@ -33,58 +34,63 @@ window.addEventListener("load", function() {
 })
 
 async function signUp() {
-    console.log(email.value);
-    console.log(username.value);
-    console.log(password.value);
-    console.log(passwordRepeat.value);
+    // get all user docs
     const userSnap = await getDocs(collection(db, "users"))
 
     if (email.value != "" && username.value != "" && password.value != "" && passwordRepeat.value != "") {
         if (password.value === passwordRepeat.value) {
-            let usernameClash = false;
-                userSnap.forEach((user) => {
-                    if (user.data().username === username.value.toLowerCase()) {
-                        usernameClash =  true;
-                    }
-                });
-                if (!usernameClash) {
-                    await createUserWithEmailAndPassword(auth, email.value, password.value).then(
-                    async (userCredentials) => {
-                        const u = userCredentials.user;
-                        await setDoc(doc(db, "users", u.uid.toString()), {
-                            email: u.email,
-                            username: username.value
-                        })
+            
+            if (checkbox.checked) { 
+                let usernameClash = false;
+                    userSnap.forEach((user) => {
+                        if (user.data().username === username.value.toLowerCase()) {
+                            usernameClash =  true;
+                        }
+                    });
+                    if (!usernameClash) {
+                        await createUserWithEmailAndPassword(auth, email.value, password.value).then(
+                            async (userCredentials) => {
+                                const u = userCredentials.user;
+                                await setDoc(doc(db, "users", u.uid.toString()), {
+                                    email: u.email,
+                                    username: username.value
+                                })
 
-                        signInWithEmailAndPassword(auth, email.value, password.value);
-                        window.location.href = "../homepage/homepage.html"
-                    }
-                ).catch((error) => {
+                                signInWithEmailAndPassword(auth, email.value, password.value);
+                                window.location.href = "../homepage/homepage.html"
+                            }
+                        ).catch((error) => {
+                            const errMes = document.querySelector(".errMes");
+                            switch (error.code) {
+                                case 'auth/email-already-in-use':
+                                errMes.textContent = `Email address ${email.value} already in use.`;
+                                break;
+                                case 'auth/invalid-email':
+                                    errMes.textContent = `Email address ${email.value} is invalid.`;
+                                break;
+                                case 'auth/operation-not-allowed':
+                                    errMes.textContent = `Error during sign up.`;
+                                break;
+                                case 'auth/weak-password':
+                                    errMes.textContent = 'Password is not strong enough. Add additional characters including special characters and numbers.';
+                                break;
+                                default:
+                                console.log(error.message);
+                                break;
+                            }
+
+                            errMes.style.display = "block";
+                    }) 
+                } else {
                     const errMes = document.querySelector(".errMes");
-                    switch (error.code) {
-                        case 'auth/email-already-in-use':
-                          errMes.textContent = `Email address ${email.value} already in use.`;
-                          break;
-                        case 'auth/invalid-email':
-                            errMes.textContent = `Email address ${email.value} is invalid.`;
-                          break;
-                        case 'auth/operation-not-allowed':
-                            errMes.textContent = `Error during sign up.`;
-                          break;
-                        case 'auth/weak-password':
-                            errMes.textContent = 'Password is not strong enough. Add additional characters including special characters and numbers.';
-                          break;
-                        default:
-                          console.log(error.message);
-                          break;
-                      }
 
+                    errMes.textContent = "Username already exists";
                     errMes.style.display = "block";
-                }) 
+                }
             } else {
                 const errMes = document.querySelector(".errMes");
 
-                errMes.textContent = "Username already exists";
+                errMes.textContent = "Please accept our T&Cs"
                 errMes.style.display = "block";
             }
         } else {

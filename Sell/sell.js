@@ -26,7 +26,6 @@ const itemName = document.querySelector('.name');
 const desc = document.querySelector('.description');
 const category = document.querySelector('.category');
 const price = document.querySelector('.price');
-const checkbox = document.querySelector('.agree');
 const image = document.querySelector('.image');
 const btn = document.querySelector('#btn');
 btn.addEventListener("click", (event) => upload(event))
@@ -48,8 +47,7 @@ window.addEventListener("load", function() {
 async function upload(e) {
   errMes.textContent = "";
   if (itemName.value != "" && desc.value != "" && price.value != "" && category.value != "" && image.value != "") {
-    if (checkbox.checked) {
-      
+
       // Check if user is signed in
       auth.onAuthStateChanged(async function(user) {
         if (user) {
@@ -99,9 +97,6 @@ async function upload(e) {
           
         }
       }) 
-    } else {
-      errMes.textContent = "Please agree to T&Cs"
-    }
   } else {
     errMes.textContent = "Please fill in all fields"
   }
