@@ -20,9 +20,14 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 const storage = getStorage();
 
+const errMes = document.querySelector('.errMes');
+
 const itemName = document.querySelector('.name');
 const desc = document.querySelector('.description');
+const category = document.querySelector('.category');
 const price = document.querySelector('.price');
+const checkbox = document.querySelector('.agree');
+const image = document.querySelector('.image');
 const btn = document.querySelector('#btn');
 btn.addEventListener("click", (event) => upload(event))
 
@@ -33,56 +38,75 @@ window.addEventListener("load", function() {
     auth.onAuthStateChanged(function(user) {
         if (user) {
           
+        } else {
+          window.location.href = "../homepage/homepage.html";
         }
     })
 
 });
 
 async function upload(e) {
-  // Check if user is signed in
-  auth.onAuthStateChanged(async function(user) {
-    if (user) {
-      // Get users document
-      const snap = await getDoc(doc(db, "users", user.uid));
-      if (snap.exists()) {
-        const docRef = await addDoc(collection(db, "products"), {
-          name: itemName.value,
-          desc: desc.value,
-          price: price.value,
-          username: snap.data().username,
-          timestamp: Timestamp.fromDate(new Date())
-        });
-  
-        // Set storage path with the same id as the product id
-        const storageImgRef = ref(storage, 'productImages/'+docRef.id);
-
-        // Get uploaded image details
-        const img = document.querySelector('.image').files[0];
-  
-        // Set metadata (not necessary/doesn't work)
-        const metadata = {
-          contentType: img.type,
-          timestamp: new Date().getTime(),
-          imageName: img.name
-        };
-
-        // Save image to storage
-        uploadBytes(storageImgRef, img, metadata).then((snapshot) => {
-          console.log('Uploaded a file!', snapshot);
-          // Get image download link and save to product document
-          getDownloadURL(storageImgRef).then(async (url) => {
-            await updateDoc(docRef, {
-              imgDownloadURL: url
-            }); 
-            // Navigate home
-            window.location.href = "../homepage/homepage.html";
-          })
-        });
-      }
-      // Create new product document
+  errMes.textContent = "";
+  if (itemName.value != "" && desc.value != "" && price.value != "" && category.value != "" && image.value != "") {
+    if (checkbox.checked) {
       
+      // Check if user is signed in
+      auth.onAuthStateChanged(async function(user) {
+        if (user) {
+
+          // Get users document
+          const snap = await getDoc(doc(db, "users", user.uid));
+          if (snap.exists()) {
+
+            const docRef = await addDoc(collection(db, "products"), {
+              name: itemName.value,
+              desc: desc.value,
+              price: price.value,
+              category: category.value,
+              username: snap.data().username,
+              timestamp: Timestamp.fromDate(new Date())
+            });
+
+            // Set storage path with the same id as the product id
+            const storageImgRef = ref(storage, 'productImages/'+docRef.id);
+
+            // Get uploaded image details
+            const img = document.querySelector('.image').files[0];
+
+            // Set metadata (not necessary/doesn't work)
+            const metadata = {
+              contentType: img.type,
+              timestamp: new Date().getTime(),
+              imageName: img.name
+            };
+
+            // Save image to storage
+            uploadBytes(storageImgRef, img, metadata).then((snapshot) => {
+              console.log('Uploaded a file!', snapshot);
+              // Get image download link and save to product document
+              getDownloadURL(storageImgRef).then(async (url) => {
+                console.log(url);
+                await updateDoc(docRef, {
+                  imgDownloadURL: url
+                }); 
+
+                // Navigate home
+                window.location.href = "../homepage/homepage.html";
+              })
+            });
+          }
+          // Create new product document
+          
+        }
+      }) 
+    } else {
+      errMes.textContent = "Please agree to T&Cs"
     }
-  })  
+  } else {
+    errMes.textContent = "Please fill in all fields"
+  }
+
+  
 }
 function logout() {
   signOut(auth).then(() => {

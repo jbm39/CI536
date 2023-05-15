@@ -11,12 +11,12 @@
             <div class="container">
                 <div class="navbar">
                     <div class="logo">
-                        <img src="../images/WebsiteLogo.png" >
+                        <img src="../images/WebsiteLogo.png">
                     </div>
                     <nav>
                         <ul>
                             <li><a href="../homepage/homepage.html">Home</a></li>
-                            <li><a href="">Products</a></li>
+                            <li><a href="../products/products.html">Products</a></li>
                             <li><a class="active" href="sell.html">Sell Item</a></li>
                             <li class="logout"><a href="">Log Out</a></li>
                         </ul>
@@ -36,6 +36,23 @@
                             <label for="description"><b>Description</b></label>
                             <input class="description" type="text" placeholder="Description" name="description"
                             required>
+
+                            <label for="category"><b>Category</b></label>
+                            <select class="category" name="category" required>
+                                <option value="">Select Category</option>
+                                <option value="">------------------------------</option>
+                                <option value="accessories">Accessories</option>
+                                <option value="books">Books</option>
+                                <option value="electronics">Electronics</option>
+                                <option value="fashion">Fashion</option>
+                                <option value="furniture">Furniture</option>
+                                <option value="gaming">Gaming</option>
+                                <option value="kitchen">Kitchen</option>
+                                <option value="miscellaneous">Miscellaneous</option>
+                                <option value="sport">Sport</option>
+                                <option value="stationery">Stationery</option>
+                                <option value="other">Other</option>
+                            </select> <br>
             
                             <label for="price"><b>Price (£)</b></label>
                             <input class="price" type="number" placeholder="Enter Price" name="price"
@@ -45,11 +62,12 @@
                             <input class="image" type="file" name="image" accept="image/png, image/jpeg, image/jpg"
                             required>
             
-                            <!-- <label>
-                                <input type="checkbox" checked="checked" name="remember" style="margin-bottom:10px;"> Remember me
-                            </label> -->
+                            
+                            <input class="agree" type="checkbox" name="agree" > I agree
+                            
             
-                            <!-- <p> By creating this account you agree to our T&C and Privacy Policy</p> -->
+                            <p> By checking this box you agree to our T&Cs and Privacy Policy</p>
+                            <br>
                             <p class="errMes"></p>
             
                             <button type="button" id="btn">Sell Item</button>
