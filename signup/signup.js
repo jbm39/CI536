@@ -34,6 +34,7 @@ window.addEventListener("load", function() {
 })
 
 async function signUp() {
+    errMes.textContent = "";
     // get all user docs
     const userSnap = await getDocs(collection(db, "users"))
 
@@ -78,32 +79,22 @@ async function signUp() {
                                 console.log(error.message);
                                 break;
                             }
-
-                            errMes.style.display = "block";
                     }) 
                 } else {
                     const errMes = document.querySelector(".errMes");
-
                     errMes.textContent = "Username already exists";
-                    errMes.style.display = "block";
                 }
             } else {
                 const errMes = document.querySelector(".errMes");
-
                 errMes.textContent = "Please accept our T&Cs"
-                errMes.style.display = "block";
             }
         } else {
             const errMes = document.querySelector(".errMes");
-
             errMes.textContent = "Passwords do not match";
-            errMes.style.display = "block";
         }
     } else {
         const errMes = document.querySelector(".errMes");
-
         errMes.textContent = "Please complete all fields";
-        errMes.style.display = "block";
     }
 
 }

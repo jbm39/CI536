@@ -1,12 +1,8 @@
-
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
 import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
 import { getFirestore, collection, getDocs, getDoc, where, query, orderBy, limit, deleteDoc, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-storage.js";
 
-// // TODO: Add SDKs for Firebase products that you want to use
-// // https://firebase.google.com/docs/web/setup#available-libraries
 const firebaseConfig = {
     apiKey: "AIzaSyBw5eHb_dQs9kz2fMMl1Tna-L1cV3XJS7k",
     authDomain: "brighton-uni-marketplace.firebaseapp.com",
@@ -16,7 +12,7 @@ const firebaseConfig = {
     appId: "1:389607392934:web:406b10d68b4b71feb55667"
   };
 
-// // Initialize Firebase
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
@@ -96,21 +92,18 @@ async function getProducts() {
     snap.forEach((doc) => {
         // Get where the products will be shown
         const prodDisplay = document.querySelector(".showProds");
-        
         // Create Image
-        const newProd = document.createElement("div")
+        const newProd = document.createElement("div");
         newProd.setAttribute("class", "product");
-        const newProdImgDiv = document.createElement("div")
+        const newProdImgDiv = document.createElement("div");
         newProdImgDiv.setAttribute("class", "prodImg");
-        const newProdImg = document.createElement("img")
+        const newProdImg = document.createElement("img");
         newProdImg.setAttribute("src", doc.data().imgDownloadURL);
-        
         newProdImgDiv.appendChild(newProdImg);
-
         // Create product details 
         const newProdDetailsDiv = document.createElement("div");
         newProdDetailsDiv.setAttribute("class", "prodDetails");
-        
+
         const name = document.createElement("h3");
         name.setAttribute("class","prodName");
         name.textContent = doc.data().name;
@@ -145,10 +138,8 @@ async function getProducts() {
 
         const newBuyBtnDiv = document.createElement("div");
         newBuyBtnDiv.setAttribute("class", "buyBtnDiv");
-
         newBuyBtnDiv.appendChild(newBuyBtn);
 
-        
         // Add Image, product details and buy button to page
         newProd.appendChild(newProdImgDiv);
         newProd.appendChild(newProdDetailsDiv);
