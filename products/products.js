@@ -83,6 +83,10 @@ window.addEventListener("load", function() {
         console.error("Error adding document: ", e);
     }
 
+    if (window.location.search != null) {
+        category = window.location.search.substring(1);
+        dropdown.value = category;
+    }
     dropdown.addEventListener("click", (event) => getProducts(dropdown.value));
     // Start displaying products
     getProducts(category);
@@ -102,12 +106,10 @@ async function getProducts(category) {
     if (snap != null) {
         // Get where the products will be shown
         const prodDisplay = document.querySelector(".showProds");
-
         // Clear already shown products
         while (prodDisplay.childElementCount > 0) {
             prodDisplay.firstChild.remove();
         }
-
         // Create the display for each product
         snap.forEach((doc) => {  
 
@@ -159,10 +161,8 @@ async function getProducts(category) {
 
             const newBuyBtnDiv = document.createElement("div");
             newBuyBtnDiv.setAttribute("class", "buyBtnDiv");
-
             newBuyBtnDiv.appendChild(newBuyBtn);
 
-            
             // Add Image, product details and buy button to page
             newProd.appendChild(newProdImgDiv);
             newProd.appendChild(newProdDetailsDiv);
