@@ -28,6 +28,7 @@ p{
     color:#323e48;
 }
 .container{
+    text-align: center;
     max-width: 90%;
     margin: auto;
     padding-left: 25px;
@@ -190,10 +191,7 @@ ul{
     max-width: 30%;
     margin: 10px auto;
 }
-.center:hover{
-    cursor: pointer;
-    text-decoration: underline;
-}
+
 /*
 .flexbox {
     display: flex;
